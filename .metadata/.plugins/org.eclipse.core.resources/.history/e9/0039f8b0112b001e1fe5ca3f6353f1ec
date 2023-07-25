@@ -1,0 +1,28 @@
+package com.docentes.service.modelos;
+
+public class Cursos {
+	private String nombre;
+	private int docentesId;
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public int getDocentesId() {
+		return docentesId;
+	}
+
+	public void setDocentesId(int docentesId) {
+		this.docentesId = docentesId;
+	}
+
+	public Cursos() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+}

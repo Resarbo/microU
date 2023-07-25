@@ -1,0 +1,5 @@
+package com.cursos.service.repositorio;
+
+public interface CursosRepository {
+
+}

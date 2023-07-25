@@ -1,0 +1,5 @@
+package com.docentes.service.feignclientes;
+
+public class CursosFeignClient {
+
+}

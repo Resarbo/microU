@@ -1,0 +1,5 @@
+package com.aulas.service.controlador;
+
+public class AulasController {
+
+}

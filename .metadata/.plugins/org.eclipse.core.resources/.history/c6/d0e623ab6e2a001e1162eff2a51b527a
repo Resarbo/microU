@@ -1,0 +1,28 @@
+package com.universidad.service.servicio;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.universidad.service.entidades.Universidad;
+import com.universidad.service.repositorio.UniversidadRepository;
+
+@Service
+public class UniversidadService {
+	@Autowired
+	private UniversidadRepository universidadRepository;
+	
+	public List<Universidad> getAll() {
+		return universidadRepository.findAll();
+	}
+
+	public Universidad getUniversidadById(int id) {
+		return universidadRepository.findById(id).orElse(null);
+	}
+
+	public Universidad save(Universidad universidad) {
+		Universidad nuevoUsuario = universidadRepository.save(universidad);
+		return nuevoUsuario;
+	}
+}

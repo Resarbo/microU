@@ -1,0 +1,21 @@
+package com.docentes.service.feignclientes;
+
+import java.util.List;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.docentes.service.modelos.Cursos;
+
+
+@FeignClient(name = "cursos-service", url= "http://localhost:8003")
+public interface CursosFeignClient {
+	@PostMapping("/cursos")
+	public Cursos save(@RequestBody Cursos cursos);
+	
+	@GetMapping("/cursos/universidad/{docentesId}")
+	public List<Cursos> getCursos(@PathVariable("docentesId") int docentesId);
+}

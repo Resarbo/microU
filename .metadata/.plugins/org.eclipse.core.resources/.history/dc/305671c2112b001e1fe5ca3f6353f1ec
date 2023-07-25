@@ -1,0 +1,69 @@
+package com.docentes.service.controlador;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.docentes.service.entidades.Docentes;
+import com.docentes.service.modelos.Cursos;
+import com.docentes.service.servicio.DocentesService;
+
+@RestController
+@RequestMapping("/docentes")
+public class DocentesController {
+	@Autowired
+	private DocentesService docentesService;
+	
+	@GetMapping
+	public ResponseEntity<List<Docentes>> listarDocentes(){
+		List<Docentes> docentes = docentesService.getAll();
+		if(docentes.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(docentes);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Docentes> obtenerDocente(@PathVariable("id") int id){
+		Docentes docente= docentesService.getDocenteById(id);
+		if(docente == null) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.ok(docente);
+	}
+	
+	@PostMapping
+	public ResponseEntity<Docentes> guardarDocente(@RequestBody Docentes docente){
+		Docentes nuevoDocente = docentesService.save(docente);
+		return ResponseEntity.ok(nuevoDocente);
+	}
+	
+	@GetMapping("/universidad/{universidadId}")
+	public ResponseEntity<List<Docentes>> listarDocentesPorUniversidadId(@PathVariable("universidadId") int id){
+		List<Docentes> docentes = docentesService.byUniversidadId(id);
+		if(docentes.isEmpty()) {
+			return ResponseEntity.noContent().build();
+		}
+		return ResponseEntity.ok(docentes);
+	}
+	
+	@PostMapping("/cursos/{docentesId}")
+	public ResponseEntity<Cursos> guardarCursos(@PathVariable("docentesId") int docentesId,@RequestBody Cursos cursos){
+		Cursos nuevoCurso = docentesService.saveCursos(docentesId, cursos);
+		return ResponseEntity.ok(nuevoCurso);
+	} 
+	
+	@GetMapping("/todosC/{docentesId}")
+	public ResponseEntity<Map<String, Object>> listarTodosLosCursos(@PathVariable("docentesId") int docentesId){
+		Map<String,Object> resultado = docentesService.getDocentesAndCursos(docentesId);
+		return ResponseEntity.ok(resultado);
+	}
+}

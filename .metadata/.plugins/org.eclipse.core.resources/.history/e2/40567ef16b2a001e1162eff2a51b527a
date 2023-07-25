@@ -1,0 +1,5 @@
+package com.docentes.service.entidades;
+
+public class Docentes {
+
+}

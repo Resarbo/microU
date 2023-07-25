@@ -1,0 +1,11 @@
+package com.cursos.service.repositorio;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.cursos.service.entidades.Cursos;
+
+public interface CursosRepository extends JpaRepository<Cursos, Integer>{
+	List<Cursos> findByDocentesId(int docentesId);
+}

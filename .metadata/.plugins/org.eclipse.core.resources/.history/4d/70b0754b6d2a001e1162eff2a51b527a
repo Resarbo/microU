@@ -1,0 +1,5 @@
+package com.docentes.service.controlador;
+
+public class DocentesController {
+
+}

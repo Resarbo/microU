@@ -1,0 +1,67 @@
+package com.docentes.service.servicio;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.docentes.service.entidades.Docentes;
+import com.docentes.service.feignclientes.CursosFeignClient;
+import com.docentes.service.modelos.Cursos;
+import com.docentes.service.repositorio.DocentesRepository;
+
+@Service
+public class DocentesService {
+	@Autowired
+	private DocentesRepository docentesRepository;
+	
+	@Autowired
+	private CursosFeignClient cursosFeignClient;
+	
+	public List<Docentes> getAll(){
+		return docentesRepository.findAll();
+	}
+	
+	public Docentes getDocenteById(int id) {
+		return docentesRepository.findById(id).orElse(null);
+	}
+	
+	public Docentes save(Docentes docentes) {
+		Docentes nuevoDocente = docentesRepository.save(docentes);
+		return nuevoDocente;
+	}
+	
+	public List<Docentes> byUniversidadId(int universidadId){
+		return docentesRepository.findByUniversidadId(universidadId);
+	}
+	
+	public Cursos saveDocentes(int docentesId, Cursos cursos) {
+		cursos.setDocentesId(docentesId);
+		Cursos nuevoCurso = cursosFeignClient.save(cursos);
+		return nuevoCurso;
+	}
+	
+	public Map<String, Object> getDocentesAndCursos(int docentesId){
+		Map<String,Object> resultado = new HashMap<>();
+		Docentes docentes = docentesRepository.findById(docentesId).orElse(null);
+		
+		if(docentes == null) {
+			resultado.put("Mensaje", "El docente no existe");
+			return resultado;
+		}
+		
+		resultado.put("Docentes",docentes);
+		List<Cursos> cursos = cursosFeignClient.getCurso(docentesId);
+		if(cursos.isEmpty()) {
+			resultado.put("Cursos", "Los docentes no tienen cursos");
+		}
+		else {
+			resultado.put("Cursos", cursos);
+		}
+		
+		return resultado;
+	}
+	
+}
