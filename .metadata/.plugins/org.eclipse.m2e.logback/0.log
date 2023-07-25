@@ -988,3 +988,5 @@
 2023-07-25 13:47:54,452 [Worker-111: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\LENOVO\OneDrive\Documentos\UTP\Sistemas Distribuido\Cesar examen\docentes-service\src\test\resources
 2023-07-25 13:48:14,258 [Worker-114: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2023-07-25 13:48:14,264 [Worker-114: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2023-07-25 13:48:14,267 [Worker-114: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\LENOVO\OneDrive\Documentos\UTP\Sistemas Distribuido\Cesar examen\config-service\src\test\resources
+2023-07-25 13:55:13,846 [Worker-113: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes

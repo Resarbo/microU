@@ -5,7 +5,7 @@ spring:
     config:
       server:
         git:
-          default-label: eureka-server
+          default-label: instance-multiples
           uri: https://github.com/Resarbo/microU
           search-paths: config-data
   application:
