@@ -6,3 +6,4 @@
 1690306719445	Rename field 'curso'
 1690306738678	Rename method 'setCurso'
 1690306750469	Rename method 'getCurso'
+1690309903366	Rename resource 'application.properties'
